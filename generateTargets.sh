@@ -3,7 +3,7 @@
 
 f_targets(){
 clear
-f_banner
+# f_banner
 
 echo -e "${BLUE}SCANNING${NC}"
 echo

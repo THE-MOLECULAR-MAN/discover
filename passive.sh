@@ -18,7 +18,8 @@ echo
 echo $medium
 echo
 echo -n "Company: "
-read company
+# read company
+company="$1"
 
 # Check for no answer, need dbl brackets to handle a space in the name
 if [[ -z $company ]]; then
@@ -26,7 +27,8 @@ if [[ -z $company ]]; then
 fi
 
 echo -n "Domain:  "
-read domain
+#read domain
+domain="$2"
 
 # Check for no answer
 if [ -z $domain ]; then

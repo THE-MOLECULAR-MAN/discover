@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 clear
-f_banner
+# f_banner
 
 echo -e "${BLUE}Uses ARIN, DNSRecon, dnstwist, goog-mail, goohost, theHarvester,${NC}"
 echo -e "${BLUE}Metasploit, Whois, multiple websites, and recon-ng.${NC}"

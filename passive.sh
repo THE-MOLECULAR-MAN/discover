@@ -600,32 +600,32 @@ echo -e "The supporting data folder is located at ${YELLOW}$home/data/$domain/${
 
 f_runlocally
 
-xdg-open https://www.google.com/search?q=%22$companyurl%22+logo &
-sleep 4
-xdg-open https://www.google.com/search?q=site:$domain+%22internal+use+only%22 &
-sleep 4
-xdg-open https://www.shodan.io/search?query=$domain &
-sleep 4
-xdg-open https://www.shodan.io/search?query=org:%22$companyurl%22 &
-sleep 4
-xdg-open https://www.google.com/search?q=site:$domain+%22index+of/%22+OR+%22parent+directory%22 &
-sleep 4
-xdg-open https://dockets.justia.com/search?parties=%22$companyurl%22&cases=mostrecent &
-sleep 4
-xdg-open https://www.google.com/search?q=site:$domain+username+OR+password+OR+login+-Find &
-sleep 4
-xdg-open https://www.google.com/search?q=site:$domain+Atlassian+OR+jira+-%22Job+Description%22+-filetype%3Apdf &
-sleep 4
-xdg-open https://networksdb.io/search/org/%22$companyurl%22 &
-sleep 4
-xdg-open https://www.google.com/search?q=site:pastebin.com+%22$companyurl%22+password &
-sleep 6
-xdg-open https://www.google.com/search?q=site:$domain+ext:doc+OR+ext:docx &
-sleep 7
-xdg-open https://www.google.com/search?q=site:$domain+ext:xls+OR+ext:xlsx &
-sleep 8
-xdg-open https://www.google.com/search?q=site:$domain+ext:ppt+OR+ext:pptx &
-sleep 9
-xdg-open https://www.google.com/search?q=site:$domain+ext:txt+OR+ext:log+OR+ext:bak &
-sleep 4
-xdg-open https://$domain &
+# xdg-open https://www.google.com/search?q=%22$companyurl%22+logo &
+#sleep 4
+#xdg-open https://www.google.com/search?q=site:$domain+%22internal+use+only%22 &
+#sleep 4
+#xdg-open https://www.shodan.io/search?query=$domain &
+#sleep 4
+#xdg-open https://www.shodan.io/search?query=org:%22$companyurl%22 &
+#sleep 4
+#xdg-open https://www.google.com/search?q=site:$domain+%22index+of/%22+OR+%22parent+directory%22 &
+#sleep 4
+#xdg-open https://dockets.justia.com/search?parties=%22$companyurl%22&cases=mostrecent &
+#sleep 4
+#xdg-open https://www.google.com/search?q=site:$domain+username+OR+password+OR+login+-Find &
+#sleep 4
+#xdg-open https://www.google.com/search?q=site:$domain+Atlassian+OR+jira+-%22Job+Description%22+-filetype%3Apdf &
+#sleep 4
+#xdg-open https://networksdb.io/search/org/%22$companyurl%22 &
+#sleep 4
+#xdg-open https://www.google.com/search?q=site:pastebin.com+%22$companyurl%22+password &
+#sleep 6
+#xdg-open https://www.google.com/search?q=site:$domain+ext:doc+OR+ext:docx &
+#sleep 7
+#xdg-open https://www.google.com/search?q=site:$domain+ext:xls+OR+ext:xlsx &
+#sleep 8
+#xdg-open https://www.google.com/search?q=site:$domain+ext:ppt+OR+ext:pptx &
+#sleep 9
+#xdg-open https://www.google.com/search?q=site:$domain+ext:txt+OR+ext:log+OR+ext:bak &
+#sleep 4
+#xdg-open https://$domain &

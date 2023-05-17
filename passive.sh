@@ -598,7 +598,7 @@ echo -e "The supporting data folder is located at ${YELLOW}$home/data/$domain/${
 
 ###############################################################################################################################
 
-f_runlocally
+# f_runlocally
 
 # xdg-open https://www.google.com/search?q=%22$companyurl%22+logo &
 #sleep 4

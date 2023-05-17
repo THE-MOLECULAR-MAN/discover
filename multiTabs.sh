@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-f_runlocally
+# f_runlocally
 clear
 f_banner
 
@@ -23,13 +23,13 @@ case $choice in
 
      if [ -z $prefix ]; then
           for i in $(cat $location); do
-               xdg-open http://$i &
-               sleep 1
+               #xdg-open http://$i &
+               #sleep 1
           done
      elif [ "$prefix" == "y" ]; then
           for i in $(cat $location); do
-               xdg-open https://$i &
-               sleep 1
+               #xdg-open https://$i &
+               #sleep 1
           done
      else
           f_error
@@ -58,8 +58,8 @@ case $choice in
      cd $location
 
      for i in $(ls -l | awk '{print $9}'); do
-          xdg-open $i &
-          sleep 1
+          #xdg-open $i &
+          #sleep 1
      done
      
      exit
@@ -96,8 +96,8 @@ case $choice in
      grep 'Disallow' robots.txt | awk '{print $2}' > tmp
 
      for i in $(cat tmp); do
-          xdg-open http://$domain$i &
-          sleep 1
+          #xdg-open http://$domain$i &
+          #sleep 1
      done
 
      rm robots.txt

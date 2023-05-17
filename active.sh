@@ -6,7 +6,7 @@ total=8
 ###############################################################################################################################
 
 clear
-f_banner
+# f_banner
 
 echo -e "${BLUE}Uses DNSRecon, recon-ng, Traceroute, wafw00f, and Whatweb.${NC}"
 echo

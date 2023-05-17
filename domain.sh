@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 clear
-f_banner
+# f_banner
 
 echo -e "${BLUE}RECON${NC}"
 echo
@@ -20,7 +20,7 @@ case $recon in
 
      3)
      clear
-     f_banner
+     #f_banner
 
      echo -e "${BLUE}Find registered domains.${NC}"
      echo

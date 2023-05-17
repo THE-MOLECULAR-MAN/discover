@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 clear
-f_banner
+# f_banner
 
 echo -e "${BLUE}Metasploit Listeners${NC}"
 echo

@@ -1,25 +1,35 @@
 #!/usr/bin/bash
+# commands used in here
+# all of global-definitions.sh
+# sed grep date xmllint curl cut sort cat tr awk wget column wc whois openssl
+# dnstwist  recon-ng
+# msfconsole
+# $discover/mods/goog-mail.py
+# python3 /opt/DNSRecon/dnsrecon.py
+# $discover/mods/goohost.sh
+# /opt/subfinder/v2/cmd/subfinder/subfinder
+# /opt/theHarvester/theHarvester.py
 
 source global-definitions.sh
 
 clear
 # f_banner
 
-echo -e "${BLUE}Uses ARIN, DNSRecon, dnstwist, goog-mail, goohost, theHarvester,${NC}"
-echo -e "${BLUE}Metasploit, Whois, multiple websites, and recon-ng.${NC}"
-echo
-echo -e "${BLUE}[*] Acquire API keys for maximum results with theHarvester.${NC}"
-echo
-echo $medium
-echo
-echo "Usage"
-echo
-echo "Company: Target"
-echo "Domain:  target.com"
-echo
-echo $medium
-echo
-echo -n "Company: "
+# echo -e "${BLUE}Uses ARIN, DNSRecon, dnstwist, goog-mail, goohost, theHarvester,${NC}"
+# echo -e "${BLUE}Metasploit, Whois, multiple websites, and recon-ng.${NC}"
+# echo
+# echo -e "${BLUE}[*] Acquire API keys for maximum results with theHarvester.${NC}"
+# echo
+# echo $medium
+# echo
+# echo "Usage"
+# echo
+# echo "Company: Target"
+# echo "Domain:  target.com"
+# echo
+# echo $medium
+# echo
+# echo -n "Company: "
 # read company
 company="$1"
 
@@ -28,7 +38,7 @@ if [[ -z $company ]]; then
      f_error
 fi
 
-echo -n "Domain:  "
+#echo -n "Domain:  "
 #read domain
 domain="$2"
 
@@ -47,9 +57,9 @@ if [ ! -d $home/data/$domain ]; then
      sed -i "s/#DATE#/$rundate/" $home/data/$domain/index.htm
 fi
 
-echo
-echo $medium
-echo
+# echo
+# echo $medium
+# echo
 
 ###############################################################################################################################
 

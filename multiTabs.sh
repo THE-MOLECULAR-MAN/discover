@@ -1,7 +1,9 @@
 #!/usr/bin/bash
+source global-definitions.sh
 
 # f_runlocally
 clear
+
 f_banner
 
 echo -e "${BLUE}Open multiple tabs in Firefox with:${NC}"

@@ -1,9 +1,9 @@
 #!/usr/bin/bash
-
+source global-definitions.sh
 
 f_targets(){
 clear
-# f_banner
+f_banner
 
 echo -e "${BLUE}SCANNING${NC}"
 echo

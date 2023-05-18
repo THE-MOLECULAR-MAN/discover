@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-
+source global-definitions.sh
 # Number of tests
 total=8
 

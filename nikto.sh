@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+source global-definitions.sh
 
 # Check for root
 if [ $EUID == 0 ]; then

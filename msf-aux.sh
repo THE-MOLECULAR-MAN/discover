@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+source global-definitions.sh
 
 echo
 echo $medium

@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+source global-definitions.sh
 
 END=$(date +%r\ %Z)
 filename=$name/report.txt

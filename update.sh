@@ -1,9 +1,6 @@
 #!/usr/bin/bash
+source global-definitions.sh
 
-# Global variables
-YELLOW='\033[1;33m'
-BLUE='\033[1;34m'
-NC='\033[0m'
 
 # Check for root
 if [ $EUID -ne 0 ]; then

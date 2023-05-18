@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+source global-definitions.sh
 
 clear
 f_banner

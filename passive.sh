@@ -12,7 +12,7 @@
 
 source global-definitions.sh
 
-clear
+# clear
 # f_banner
 
 # echo -e "${BLUE}Uses ARIN, DNSRecon, dnstwist, goog-mail, goohost, theHarvester,${NC}"
@@ -67,55 +67,57 @@ fi
 total=45
 
 echo "ARIN"
-echo "     Email                (1/$total)"
-curl --cipher ECDHE-RSA-AES256-GCM-SHA384 -k -s https://whois.arin.net/rest/pocs\;domain=$domain > tmp.xml
+# echo "     Email                (1/$total)"
+# curl --cipher ECDHE-RSA-AES256-GCM-SHA384 -k -s https://whois.arin.net/rest/pocs\;domain=$domain > tmp.xml
 
-if ! grep -q 'No Search Results' tmp.xml; then
-     xmllint --format tmp.xml | grep 'handle' | cut -d '>' -f2 | cut -d '<' -f1 | sort -u > zurls.txt
-     xmllint --format tmp.xml | grep 'handle' | cut -d '"' -f2 | sort -u > zhandles.txt
+# if ! grep -q 'No Search Results' tmp.xml; then
+#      xmllint --format tmp.xml | grep 'handle' | cut -d '>' -f2 | cut -d '<' -f1 | sort -u > zurls.txt
+#      xmllint --format tmp.xml | grep 'handle' | cut -d '"' -f2 | sort -u > zhandles.txt
 
-     while read i; do
-          curl --cipher ECDHE-RSA-AES256-GCM-SHA384 -k -s $i > tmp2.xml
-          xml_grep 'email' tmp2.xml --text_only >> tmp
-     done < zurls.txt
+#      while read i; do
+#           curl --cipher ECDHE-RSA-AES256-GCM-SHA384 -k -s $i > tmp2.xml
+#           xml_grep 'email' tmp2.xml --text_only >> tmp
+#      done < zurls.txt
 
-     cat tmp | grep -v '_' | tr '[A-Z]' '[a-z]' | sort -u > zarin-emails
-fi
-
-###############################################################################################################################
-
-echo "     Names                (2/$total)"
-if [ -f zhandles.txt ]; then
-     for i in $(cat zhandles.txt); do
-          curl --cipher ECDHE-RSA-AES256-GCM-SHA384 -k -s https://whois.arin.net/rest/poc/$i.txt | grep 'Name' >> tmp
-     done
-
-     egrep -iv "($company|@|abuse|center|domainnames|helpdesk|hostmaster|network|support|technical|telecom)" tmp > tmp2
-     cat tmp2 | sed 's/Name:           //g' | tr '[A-Z]' '[a-z]' | sed 's/\b\(.\)/\u\1/g' > tmp3
-     awk -F", " '{print $2,$1}' tmp3 | sed 's/  / /g' | sort -u > zarin-names
-fi
-
-rm zurls.txt zhandles.txt 2>/dev/null
+#      cat tmp | grep -v '_' | tr '[A-Z]' '[a-z]' | sort -u > zarin-emails
+# fi
 
 ###############################################################################################################################
 
-echo "     Networks             (3/$total)"
-curl --cipher ECDHE-RSA-AES256-GCM-SHA384 -k -s https://whois.arin.net/rest/orgs\;name=$companyurl -o tmp.xml
+# echo "     Names                (2/$total)"
+# if [ -f zhandles.txt ]; then
+#      for i in $(cat zhandles.txt); do
+#           curl --cipher ECDHE-RSA-AES256-GCM-SHA384 -k -s https://whois.arin.net/rest/poc/$i.txt | grep 'Name' >> tmp
+#      done
 
-if ! grep -q 'No Search Results' tmp.xml; then
-     xmllint --format tmp.xml | grep 'handle' | cut -d '/' -f6 | cut -d '<' -f1 | sort -uV > tmp
+#      egrep -iv "($company|@|abuse|center|domainnames|helpdesk|hostmaster|network|support|technical|telecom)" tmp > tmp2
+#      cat tmp2 | sed 's/Name:           //g' | tr '[A-Z]' '[a-z]' | sed 's/\b\(.\)/\u\1/g' > tmp3
+#      awk -F", " '{print $2,$1}' tmp3 | sed 's/  / /g' | sort -u > zarin-names
+# fi
 
-     for i in $(cat tmp); do
-          echo "          " $i
-          curl --cipher ECDHE-RSA-AES256-GCM-SHA384 -k -s https://whois.arin.net/rest/org/$i/nets.txt >> tmp2
-     done
-     grep -E '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' tmp2 | awk '{print $4 "-" $6}' | sed '/^-/d' | $sip > networks
-fi
+# rm zurls.txt zhandles.txt 2>/dev/null
 
-echo
+# ###############################################################################################################################
+
+# echo "     Networks             (3/$total)"
+# curl --cipher ECDHE-RSA-AES256-GCM-SHA384 -k -s https://whois.arin.net/rest/orgs\;name=$companyurl -o tmp.xml
+
+# if ! grep -q 'No Search Results' tmp.xml; then
+#      xmllint --format tmp.xml | grep 'handle' | cut -d '/' -f6 | cut -d '<' -f1 | sort -uV > tmp
+
+#      for i in $(cat tmp); do
+#           echo "          " $i
+#           curl --cipher ECDHE-RSA-AES256-GCM-SHA384 -k -s https://whois.arin.net/rest/org/$i/nets.txt >> tmp2
+#      done
+#      grep -E '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' tmp2 | awk '{print $4 "-" $6}' | sed '/^-/d' | $sip > networks
+# fi
+
+# echo
 
 ###############################################################################################################################
 
+# this works, but adds a bunch of potentially useless TXT records
+# prob good for app recognition
 echo "DNSRecon                  (4/$total)"
 source /opt/DNSRecon-venv/bin/activate
 python3 /opt/DNSRecon/dnsrecon.py -d $domain -n 8.8.8.8 -t std > tmp
@@ -130,6 +132,7 @@ echo
 
 ###############################################################################################################################
 
+# just typo squatting, prob not useful, but whatever
 echo "dnstwist                  (5/$total)"
 dnstwist --registered $domain > tmp
 grep -v 'original' tmp | sed 's/!ServFail/         /g; s/MX:$//g; s/MX:localhost//g; s/[ \t]*$//' | column -t | sed 's/[ \t]*$//' > squatting
@@ -137,18 +140,20 @@ echo
 
 ###############################################################################################################################
 
-echo "goog-mail                 (6/$total)"
-$discover/mods/goog-mail.py $domain | grep -v 'cannot' | tr '[A-Z]' '[a-z]' > zgoog-mail
-echo
+# doesn't work or return anything
+# echo "goog-mail                 (6/$total)"
+# $discover/mods/goog-mail.py $domain | grep -v 'cannot' | tr '[A-Z]' '[a-z]' > zgoog-mail
+# echo
 
 ###############################################################################################################################
 
+# does find results:
 echo "goohost"
 echo "     IP                   (7/$total)"
 $discover/mods/goohost.sh -t $domain -m ip >/dev/null
 echo "     Email                (8/$total)"
 $discover/mods/goohost.sh -t $domain -m mail >/dev/null
-cat report-* | grep $domain | column -t | sort -u > zgoohost
+cat report-*.txt | grep $domain | column -t | sort -u > zgoohost
 rm *-$domain.txt 2>/dev/null
 echo
 

@@ -66,7 +66,7 @@ fi
 # Number of tests
 total=45
 
-echo "ARIN"
+# echo "ARIN"
 # echo "     Email                (1/$total)"
 # curl --cipher ECDHE-RSA-AES256-GCM-SHA384 -k -s https://whois.arin.net/rest/pocs\;domain=$domain > tmp.xml
 
@@ -133,10 +133,10 @@ echo
 ###############################################################################################################################
 
 # just typo squatting, prob not useful, but whatever
-echo "dnstwist                  (5/$total)"
-dnstwist --registered $domain > tmp
-grep -v 'original' tmp | sed 's/!ServFail/         /g; s/MX:$//g; s/MX:localhost//g; s/[ \t]*$//' | column -t | sed 's/[ \t]*$//' > squatting
-echo
+# echo "dnstwist                  (5/$total)"
+# dnstwist --registered $domain > tmp
+# grep -v 'original' tmp | sed 's/!ServFail/         /g; s/MX:$//g; s/MX:localhost//g; s/[ \t]*$//' | column -t | sed 's/[ \t]*$//' > squatting
+# echo
 
 ###############################################################################################################################
 
@@ -148,7 +148,7 @@ echo
 ###############################################################################################################################
 
 # does find results:
-echo "goohost"
+echo "goohost.sh"
 echo "     IP                   (7/$total)"
 $discover/mods/goohost.sh -t $domain -m ip >/dev/null
 echo "     Email                (8/$total)"
@@ -167,76 +167,17 @@ echo
 
 echo "theHarvester"
 source /opt/theHarvester-venv/bin/activate
-echo "     anubis               (10/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b anubis | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zanubis
-echo "     baidu                (11/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b baidu | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zbaidu
-echo "     binaryedge           (12/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b binaryedge | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zbinaryedge
-echo "     bing                 (13/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b bing | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zbing
-echo "     bing API             (14/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b bingapi | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zbing-api
-echo "     brave                (15/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b brave | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zbrave
-echo "     bufferoverun         (16/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b bufferoverun | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zbufferoverun
-echo "     censys               (17/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b censys | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zcensys
-echo "     certspotter          (18/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b certspotter | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zcertspotter
-echo "     criminalip           (19/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b criminalip | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zcriminalip
-echo "     crtsh                (20/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b crtsh | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zcrtsh
-echo "     dnsdumpster          (21/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b dnsdumpster | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zdnsdumpster
-echo "     duckduckgo           (22/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b duckduckgo | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zduckduckgo
-echo "     fullhunt             (23/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b fullhunt | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zfullhunt
-echo "     github-code          (24/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b github-code | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zgithub-code
-echo "     hackertarget         (25/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b hackertarget | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zhackertarget
-echo "     hunter               (26/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b hunter | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zhunter
-echo "     hunterhow            (27/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b hunterhow | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zhunterhow
-echo "     intelx               (28/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b intelx | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zintelx
-echo "     otx                  (29/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b otx | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zotx
-echo "     pentesttools         (30/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b pentesttools | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zpentesttools
-echo "     projectdiscovery     (31/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b projectdiscovery | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zprojectdiscovery
-echo "     rapiddns             (32/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b rapiddns | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zrapiddns
-echo "     securityTrails       (33/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b securityTrails | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zsecuritytrails
-echo "     sitedossier          (34/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b securityTrails | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zsitedossier
-echo "     subdomainfinderc99   (35/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b subdomainfinderc99 | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zsubdomainfinderc99
-echo "     threatminer          (36/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b threatminer | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zthreatminer
-echo "     urlscan              (37/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b urlscan | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zurlscan
-echo "     virustotal           (38/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b virustotal | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zvirustotal
-echo "     yahoo                (39/$total)"
-/opt/theHarvester/theHarvester.py -d $domain -b yahoo | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > zyahoo
+/opt/theHarvester/theHarvester.py -d $domain -b all | egrep -v '(!|\*|--|\[|Searching)' | sed '/^$/d' > z_theHarvster_all
 rm tmp*
 deactivate
 echo
 
 ###############################################################################################################################
 
-echo "Metasploit                (40/$total)"
-msfconsole -q -x "use auxiliary/gather/search_email_collector; set DOMAIN $domain; run; exit y" > tmp 2>/dev/null
-grep @$domain tmp | awk '{print $2}' | tr '[A-Z]' '[a-z]' | sort -u > zmsf
-echo
+# echo "Metasploit                (40/$total)"
+# msfconsole -q -x "use auxiliary/gather/search_email_collector; set DOMAIN $domain; run; exit y" > tmp 2>/dev/null
+# grep @$domain tmp | awk '{print $2}' | tr '[A-Z]' '[a-z]' | sort -u > zmsf
+# echo
 
 ###############################################################################################################################
 
@@ -272,29 +213,30 @@ sed 's/: /:#####/g' tmp13 | column -s '#' -t > whois-domain
 
 ###############################################################################################################################
 
-echo "     IP                   (42/$total)"
-ip=`ping -c1 $domain | grep PING | cut -d '(' -f2 | cut -d ')' -f1`
-whois $ip > tmp
-# Remove blank lines from the beginning of a file
-egrep -v '(#|Comment:)' tmp | sed '/./,$!d' > tmp2
-# Remove blank lines from the end of a file
-sed -e :a -e '/^\n*$/{$d;N;ba' -e '}' tmp2 > tmp3
-# Compress blank lines
-cat -s tmp3 > tmp4
-# Print with the second column starting at 25 spaces
-awk '{printf "%-25s %s\n", $1, $2}' tmp4 | sed 's/+1-//g' > whois-ip
-rm tmp*
-echo
+# echo "     IP                   (42/$total)"
+# ip=`ping -c1 $domain | grep PING | cut -d '(' -f2 | cut -d ')' -f1`
+# whois $ip > tmp
+# # Remove blank lines from the beginning of a file
+# egrep -v '(#|Comment:)' tmp | sed '/./,$!d' > tmp2
+# # Remove blank lines from the end of a file
+# sed -e :a -e '/^\n*$/{$d;N;ba' -e '}' tmp2 > tmp3
+# # Compress blank lines
+# cat -s tmp3 > tmp4
+# # Print with the second column starting at 25 spaces
+# awk '{printf "%-25s %s\n", $1, $2}' tmp4 | sed 's/+1-//g' > whois-ip
+# rm tmp*
+# echo
 
 ###############################################################################################################################
 
-echo "dnsdumpster.com           (43/$total)"
-# Generate a random cookie value
-rando=$(openssl rand -base64 32 | tr -dc 'a-zA-Z0-9' | cut -c 1-32)
-curl -s --header "Host:dnsdumpster.com" --referer https://dnsdumpster.com --user-agent "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0" --data "csrfmiddlewaretoken=$rando&targetip=$domain" --cookie "csrftoken=$rando; _ga=GA1.2.1737013576.1458811829; _gat=1" https://dnsdumpster.com/static/map/$domain.png > /dev/null
-sleep 25
-curl -s -o $home/data/$domain/assets/images/dnsdumpster.png https://dnsdumpster.com/static/map/$domain.png
-echo
+# only downloads images
+# #echo "dnsdumpster.com           (43/$total)"
+# # Generate a random cookie value
+# rando=$(openssl rand -base64 32 | tr -dc 'a-zA-Z0-9' | cut -c 1-32)
+# curl -s --header "Host:dnsdumpster.com" --referer https://dnsdumpster.com --user-agent "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0" --data "csrfmiddlewaretoken=$rando&targetip=$domain" --cookie "csrftoken=$rando; _ga=GA1.2.1737013576.1458811829; _gat=1" https://dnsdumpster.com/static/map/$domain.png > /dev/null
+# sleep 25
+# curl -s -o $home/data/$domain/assets/images/dnsdumpster.png https://dnsdumpster.com/static/map/$domain.png
+# echo
 
 ###############################################################################################################################
 
@@ -323,7 +265,7 @@ echo
 
 ###############################################################################################################################
 
-cat z* | grep "@$domain" | grep -v '[0-9]' | egrep -v '(_|,|firstname|lastname|test|www|zzz)' | sort -u > emails
+# cat z* | grep "@$domain" | grep -v '[0-9]' | egrep -v '(_|,|firstname|lastname|test|www|zzz)' | sort -u > emails
 
 # Thanks Jason Ashton for cleaning up subdomains
 cat z* | cut -d ':' -f2 | grep "\.$domain" | egrep -v '(@|/|www)' | awk '{print $1}' | grep "\.$domain$" | sort -u > tmp
@@ -337,17 +279,17 @@ cat raw | sed 's/:,/:/g' | grep -v localhost | column -t -s ':' | sed 's/,/, /g'
 
 cat z* | egrep -iv '(@|:|\.|atlanta|boston|bufferoverun|captcha|detroit|google|integers|maryland|must be|north carolina|philadelphia|planning|postmaster|resolutions|search|substring|united|university)' | sed 's/ And / and /; s/ Av / AV /g; s/Dj/DJ/g; s/iii/III/g; s/ii/II/g; s/ It / IT /g; s/Jb/JB/g; s/ Of / of /g; s/Macd/MacD/g; s/Macn/MacN/g; s/Mca/McA/g; s/Mcb/McB/g; s/Mcc/McC/g; s/Mcd/McD/g; s/Mce/McE/g; s/Mcf/McF/g; s/Mcg/McG/g; s/Mch/McH/g; s/Mci/McI/g; s/Mcj/McJ/g; s/Mck/McK/g; s/Mcl/McL/g; s/Mcm/McM/g; s/Mcn/McN/g; s/Mcp/McP/g; s/Mcq/McQ/g; s/Mcs/McS/g; s/Mcv/McV/g; s/Tj/TJ/g; s/ Ui / UI /g; s/ Ux / UX /g' | sed '/[0-9]/d' | sed 's/ - /,/g; s/ /,/1' | awk -F ',' '{print $2"#"$1"#"$3}' | sed '/^[[:alpha:]]\+ [[:alpha:]]\+#/ s/^[[:alpha:]]\+ //' | sed 's/^[ \t]*//; s/[ \t]*$//' | sort -u > names
 
-cat z* | cut -d ':' -f2 | grep -E '\.doc$|\.docx$' > doc
-cat z* | cut -d ':' -f2 | grep -E '\.ppt$|\.pptx$' > ppt
-cat z* | cut -d ':' -f2 | grep -E '\.xls$|\.xlsx$' > xls
-cat z* | cut -d ':' -f2 | grep '\.pdf$' > pdf
-cat z* | cut -d ':' -f2 | grep '\.txt$' > txt
+# cat z* | cut -d ':' -f2 | grep -E '\.doc$|\.docx$' > doc
+# cat z* | cut -d ':' -f2 | grep -E '\.ppt$|\.pptx$' > ppt
+# cat z* | cut -d ':' -f2 | grep -E '\.xls$|\.xlsx$' > xls
+# cat z* | cut -d ':' -f2 | grep '\.pdf$' > pdf
+# cat z* | cut -d ':' -f2 | grep '\.txt$' > txt
 
 ###############################################################################################################################
 
 echo "recon-ng                  (45$total)"
-echo "marketplace refresh" > passive.rc
-echo "marketplace install all" >> passive.rc
+# echo "marketplace refresh" > passive.rc
+# echo "marketplace install all" >> passive.rc
 echo "workspaces create $domain" >> passive.rc
 echo "db insert companies" >> passive.rc
 echo "$companyurl" >> passive.rc
@@ -358,16 +300,16 @@ echo "db insert domains" >> passive.rc
 echo "$domain" >> passive.rc
 echo "none" >> passive.rc
 
-if [ -f emails ]; then
-     cp emails /tmp/tmp-emails
-     cat $discover/resource/recon-ng-import-emails.rc >> passive.rc
-fi
+# if [ -f emails ]; then
+#      cp emails /tmp/tmp-emails
+#      cat $discover/resource/recon-ng-import-emails.rc >> passive.rc
+# fi
 
-if [ -f names ]; then
-     echo "last_name#first_name#title" > /tmp/names.csv
-     cat names >> /tmp/names.csv
-     cat $discover/resource/recon-ng-import-names.rc >> passive.rc
-fi
+# if [ -f names ]; then
+#      echo "last_name#first_name#title" > /tmp/names.csv
+#      cat names >> /tmp/names.csv
+#      cat $discover/resource/recon-ng-import-names.rc >> passive.rc
+# fi
 
 cat $discover/resource/recon-ng.rc >> passive.rc
 cat $discover/resource/recon-ng-cleanup.rc >> passive.rc
@@ -377,10 +319,10 @@ recon-ng -r $CWD/passive.rc
 
 ###############################################################################################################################
 
-grep '@' /tmp/emails | awk '{print $2}' | egrep -v '(>|query|SELECT)' | sort -u > emails2
-cat emails emails2 | sort -u > emails-final
+# grep '@' /tmp/emails | awk '{print $2}' | egrep -v '(>|query|SELECT)' | sort -u > emails2
+# cat emails emails2 | sort -u > emails-final
 
-grep '|' /tmp/names | grep -v last_name | sort -u | sed 's/|/ /g' | sed 's/^[ \t]*//' > names-final
+# grep '|' /tmp/names | grep -v last_name | sort -u | sed 's/|/ /g' | sed 's/^[ \t]*//' > names-final
 
 grep '/' /tmp/networks | grep -v 'Spooling' | awk '{print $2}' | $sip > tmp
 cat tmp networks | sort -u | $sip > networks-final
@@ -407,37 +349,37 @@ echo "Summary" > zreport
 echo $short >> zreport
 echo > tmp
 
-if [ -f emails-final ]; then
-     emailcount=$(wc -l emails-final | cut -d ' ' -f1)
-     echo "Emails               $emailcount" >> zreport
-     echo "Emails ($emailcount)" >> tmp
-     echo $short >> tmp
-     cat emails-final >> tmp
-     echo >> tmp
-     cat emails-final >> $home/data/$domain/data/emails.htm
-     echo "</pre>" >> $home/data/$domain/data/emails.htm
-else
-     echo "No data found." >> $home/data/$domain/data/emails.htm
-     echo "</pre>" >> $home/data/$domain/data/emails.htm
-fi
+# if [ -f emails-final ]; then
+#      emailcount=$(wc -l emails-final | cut -d ' ' -f1)
+#      echo "Emails               $emailcount" >> zreport
+#      echo "Emails ($emailcount)" >> tmp
+#      echo $short >> tmp
+#      cat emails-final >> tmp
+#      echo >> tmp
+#      cat emails-final >> $home/data/$domain/data/emails.htm
+#      echo "</pre>" >> $home/data/$domain/data/emails.htm
+# else
+#      echo "No data found." >> $home/data/$domain/data/emails.htm
+#      echo "</pre>" >> $home/data/$domain/data/emails.htm
+# fi
 
-if [ -f names-final ]; then
-     namecount=$(wc -l names-final | cut -d ' ' -f1)
-     echo "Names                $namecount" >> zreport
-     echo "Names ($namecount)" >> tmp
-     echo $long >> tmp
-     echo 'Last name       First name' >> tmp
-     echo '--------------------------' >> tmp
-     cat names-final >> tmp
-     echo >> tmp
-     echo 'Last name       First name' >> $home/data/$domain/data/names.htm
-     echo '--------------------------' >> $home/data/$domain/data/names.htm
-     cat names-final >> $home/data/$domain/data/names.htm
-     echo "</pre>" >> $home/data/$domain/data/names.htm
-else
-     echo "No data found." >> $home/data/$domain/data/names.htm
-     echo "</pre>" >> $home/data/$domain/data/names.htm
-fi
+# if [ -f names-final ]; then
+#      namecount=$(wc -l names-final | cut -d ' ' -f1)
+#      echo "Names                $namecount" >> zreport
+#      echo "Names ($namecount)" >> tmp
+#      echo $long >> tmp
+#      echo 'Last name       First name' >> tmp
+#      echo '--------------------------' >> tmp
+#      cat names-final >> tmp
+#      echo >> tmp
+#      echo 'Last name       First name' >> $home/data/$domain/data/names.htm
+#      echo '--------------------------' >> $home/data/$domain/data/names.htm
+#      cat names-final >> $home/data/$domain/data/names.htm
+#      echo "</pre>" >> $home/data/$domain/data/names.htm
+# else
+#      echo "No data found." >> $home/data/$domain/data/names.htm
+#      echo "</pre>" >> $home/data/$domain/data/names.htm
+# fi
 
 if [ -f records ]; then
      recordcount=$(wc -l records | cut -d ' ' -f1)
@@ -466,19 +408,19 @@ if [ -f hosts ]; then
      echo >> tmp
 fi
 
-if [ -f squatting ]; then
-     squattingcount=$(wc -l squatting | cut -d ' ' -f1)
-     echo "Squatting            $squattingcount" >> zreport
-     echo "Squatting ($squattingcount)" >> tmp
-     echo $long >> tmp
-     cat squatting >> tmp
-     echo >> tmp
-     cat squatting >> $home/data/$domain/data/squatting.htm
-     echo "</pre>" >> $home/data/$domain/data/squatting.htm
-else
-     echo "No data found." >> $home/data/$domain/data/squatting.htm
-     echo "</pre>" >> $home/data/$domain/data/squatting.htm
-fi
+# if [ -f squatting ]; then
+#      squattingcount=$(wc -l squatting | cut -d ' ' -f1)
+#      echo "Squatting            $squattingcount" >> zreport
+#      echo "Squatting ($squattingcount)" >> tmp
+#      echo $long >> tmp
+#      cat squatting >> tmp
+#      echo >> tmp
+#      cat squatting >> $home/data/$domain/data/squatting.htm
+#      echo "</pre>" >> $home/data/$domain/data/squatting.htm
+# else
+#      echo "No data found." >> $home/data/$domain/data/squatting.htm
+#      echo "</pre>" >> $home/data/$domain/data/squatting.htm
+# fi
 
 if [ -f subdomains-final ]; then
      urlcount=$(wc -l subdomains-final | cut -d ' ' -f1)
@@ -505,75 +447,75 @@ else
      fi
 fi
 
-if [ -f xls ]; then
-     xlscount=$(wc -l xls | cut -d ' ' -f1)
-     echo "Excel                $xlscount" >> zreport
-     echo "Excel Files ($xlscount)" >> tmp
-     echo $long >> tmp
-     cat xls >> tmp
-     echo >> tmp
-     cat xls >> $home/data/$domain/data/xls.htm
-     echo '</pre>' >> $home/data/$domain/data/xls.htm
-else
-     echo "No data found." >> $home/data/$domain/data/xls.htm
-     echo "</pre>" >> $home/data/$domain/data/xls.htm
-fi
+# if [ -f xls ]; then
+#      xlscount=$(wc -l xls | cut -d ' ' -f1)
+#      echo "Excel                $xlscount" >> zreport
+#      echo "Excel Files ($xlscount)" >> tmp
+#      echo $long >> tmp
+#      cat xls >> tmp
+#      echo >> tmp
+#      cat xls >> $home/data/$domain/data/xls.htm
+#      echo '</pre>' >> $home/data/$domain/data/xls.htm
+# else
+#      echo "No data found." >> $home/data/$domain/data/xls.htm
+#      echo "</pre>" >> $home/data/$domain/data/xls.htm
+# fi
 
-if [ -f pdf ]; then
-     pdfcount=$(wc -l pdf | cut -d ' ' -f1)
-     echo "PDF                  $pdfcount" >> zreport
-     echo "PDF Files ($pdfcount)" >> tmp
-     echo $long >> tmp
-     cat pdf >> tmp
-     echo >> tmp
-     cat pdf >> $home/data/$domain/data/pdf.htm
-     echo '</pre>' >> $home/data/$domain/data/pdf.htm
-else
-     echo "No data found." >> $home/data/$domain/data/pdf.htm
-     echo "</pre>" >> $home/data/$domain/data/pdf.htm
-fi
+# if [ -f pdf ]; then
+#      pdfcount=$(wc -l pdf | cut -d ' ' -f1)
+#      echo "PDF                  $pdfcount" >> zreport
+#      echo "PDF Files ($pdfcount)" >> tmp
+#      echo $long >> tmp
+#      cat pdf >> tmp
+#      echo >> tmp
+#      cat pdf >> $home/data/$domain/data/pdf.htm
+#      echo '</pre>' >> $home/data/$domain/data/pdf.htm
+# else
+#      echo "No data found." >> $home/data/$domain/data/pdf.htm
+#      echo "</pre>" >> $home/data/$domain/data/pdf.htm
+# fi
 
-if [ -f ppt ]; then
-     pptcount=$(wc -l ppt | cut -d ' ' -f1)
-     echo "PowerPoint           $pptcount" >> zreport
-     echo "PowerPoint Files ($pptcount)" >> tmp
-     echo $long >> tmp
-     cat ppt >> tmp
-     echo >> tmp
-     cat ppt >> $home/data/$domain/data/ppt.htm
-     echo '</pre>' >> $home/data/$domain/data/ppt.htm
-else
-     echo "No data found." >> $home/data/$domain/data/ppt.htm
-     echo "</pre>" >> $home/data/$domain/data/ppt.htm
-fi
+# if [ -f ppt ]; then
+#      pptcount=$(wc -l ppt | cut -d ' ' -f1)
+#      echo "PowerPoint           $pptcount" >> zreport
+#      echo "PowerPoint Files ($pptcount)" >> tmp
+#      echo $long >> tmp
+#      cat ppt >> tmp
+#      echo >> tmp
+#      cat ppt >> $home/data/$domain/data/ppt.htm
+#      echo '</pre>' >> $home/data/$domain/data/ppt.htm
+# else
+#      echo "No data found." >> $home/data/$domain/data/ppt.htm
+#      echo "</pre>" >> $home/data/$domain/data/ppt.htm
+# fi
 
-if [ -f txt ]; then
-     txtcount=$(wc -l txt | cut -d ' ' -f1)
-     echo "Text                 $txtcount" >> zreport
-     echo "Text Files ($txtcount)" >> tmp
-     echo $long >> tmp
-     cat txt >> tmp
-     echo >> tmp
-     cat txt >> $home/data/$domain/data/txt.htm
-     echo '</pre>' >> $home/data/$domain/data/txt.htm
-else
-     echo "No data found." >> $home/data/$domain/data/txt.htm
-     echo "</pre>" >> $home/data/$domain/data/txt.htm
-fi
+# if [ -f txt ]; then
+#      txtcount=$(wc -l txt | cut -d ' ' -f1)
+#      echo "Text                 $txtcount" >> zreport
+#      echo "Text Files ($txtcount)" >> tmp
+#      echo $long >> tmp
+#      cat txt >> tmp
+#      echo >> tmp
+#      cat txt >> $home/data/$domain/data/txt.htm
+#      echo '</pre>' >> $home/data/$domain/data/txt.htm
+# else
+#      echo "No data found." >> $home/data/$domain/data/txt.htm
+#      echo "</pre>" >> $home/data/$domain/data/txt.htm
+# fi
 
-if [ -f doc ]; then
-     doccount=$(wc -l doc | cut -d ' ' -f1)
-     echo "Word                 $doccount" >> zreport
-     echo "Word Files ($doccount)" >> tmp
-     echo $long >> tmp
-     cat doc >> tmp
-     echo >> tmp
-     cat doc >> $home/data/$domain/data/doc.htm
-     echo '</pre>' >> $home/data/$domain/data/doc.htm
-else
-     echo "No data found." >> $home/data/$domain/data/doc.htm
-     echo "</pre>" >> $home/data/$domain/data/doc.htm
-fi
+# if [ -f doc ]; then
+#      doccount=$(wc -l doc | cut -d ' ' -f1)
+#      echo "Word                 $doccount" >> zreport
+#      echo "Word Files ($doccount)" >> tmp
+#      echo $long >> tmp
+#      cat doc >> tmp
+#      echo >> tmp
+#      cat doc >> $home/data/$domain/data/doc.htm
+#      echo '</pre>' >> $home/data/$domain/data/doc.htm
+# else
+#      echo "No data found." >> $home/data/$domain/data/doc.htm
+#      echo "</pre>" >> $home/data/$domain/data/doc.htm
+# fi
 
 cat tmp >> zreport
 
@@ -604,16 +546,18 @@ cat zreport >> $home/data/$domain/data/passive-recon.htm
 echo "</pre>" >> $home/data/$domain/data/passive-recon.htm
 
 rm tmp* zreport
-mv asn curl debug* dnstwist email* hosts name* network* raw records registered* squatting sub* whois* z* doc pdf ppt txt xls $home/data/$domain/tools/ 2>/dev/null
-mv passive.rc passive2.rc $home/data/$domain/tools/recon-ng/ 2>/dev/null
-cd /tmp/; mv emails names* networks sub* tmp-emails $home/data/$domain/tools/recon-ng/ 2>/dev/null
+#mv asn curl debug* dnstwist email* hosts name* network* raw records registered* squatting sub* whois* z* doc pdf ppt txt xls $home/data/$domain/tools/ 2>/dev/null
+mv asn curl debug* dnstwist hosts name* network* raw records registered* sub* whois* z* $home/data/$domain/tools/ 2>/dev/null
+mv passive.rc passive2.rc  $home/data/$domain/tools/recon-ng/ 2>/dev/null
+cd /tmp/; mv networks sub* $home/data/$domain/tools/recon-ng/ 2>/dev/null
 cd $CWD
 
-echo
-echo $medium
-echo
-echo
-echo -e "The supporting data folder is located at ${YELLOW}$home/data/$domain/${NC}\n"
+# echo
+# echo $medium
+# echo
+# echo
+echo "OUTPUT_PATH=$home/data/$domain"
+
 
 ###############################################################################################################################
 
